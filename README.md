@@ -106,4 +106,41 @@ make
 ```
 This should print a summary block of settings that you can glance at to verify they are to your liking.
 
-# TODO: ADD TUNE CHANGES
+# REMOVE PYTHIA6
+Update the GENIE existing architecture that uses Pythia6 be defualt to use Pythia8 now
+
+remove line 128 in `PythiaDecayer.xml`
+```
+cd $GENIE/config
+find . -name "*.xml" -exec sed -i 's/Pythia6Decayer2023/Pythia8Decayer2023/g' {} +
+find . -name "*.xml" -exec sed -i 's/AGCharmPythia6Hadro2023/AGCharmPythia8Hadro2023/g' {} +
+find . -name "*.xml" -exec sed -i 's/Pythia6/Pythia8/g' {} +
+```
+verify that there are no remaining instances of Pythia6 with `grep -rn "Pythia6" .`
+
+# TEST RUN
+We don't have any splines loaded yet, but we should be able to run a validation. It will take about an hour to finish because it has to do spline calculation itself on the fly. However, this should validate the installation as it presently stands:
+Change directory to wherever you'd like to perform the event generation, then run.
+```
+gevgen -e 100 -n 1 -p 14 -t 1000260560 --tune G18_10a_02_11a
+```
+
+# ROOT OUTPUT
+Since GENIE output files aren't flat root files but have some extra C++ code in them, we have to prepare root to be able to open the GENIE output.
+From within whatever directory you pefromed the simulation in:
+```
+root
+gSystem->Load("libGFwUtl");
+gSystem->Load("libGFwMsg");
+gSystem->Load("libGFwGHEP");
+TFile *f = TFile::Open("FILENAME.root");
+```
+You can then open the file however you'd like. I like TBrowser from within root with `new TBrowser`.
+
+
+
+
+
+
+
+
