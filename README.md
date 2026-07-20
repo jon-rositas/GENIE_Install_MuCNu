@@ -82,21 +82,12 @@ sudo apt update
 sudo apt install liblog4cpp5-dev
 ```
 
-## HepMC3
-To be able to convert your GENIE output to a format that can be used to generate event displays using Pheonix, you will need HepMC3 capability
-```
-sudo apt install -y libhepmc3-dev
-```
-
 # BUILDING
 ```
 source ~/.bashrc
 cd $GENIE
 
 ./configure \
-  --enable-hepmc3 \
-  --with-hepmc3-inc=/usr/include \
-  --with-hepmc3-lib=/usr/lib/x86_64-linux-gnu \
   --prefix=$GENIE_TARGET \
   --enable-fnal \
   --enable-baryon-residence \
