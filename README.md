@@ -151,7 +151,7 @@ GENIE needs to know what geometry you are trying to simulate neutrino interactio
 # SUB 1 TeV SPLINES
 While we do not yet have splines for the elements and isotopes in muon collider detectors above 1 TeV, we do have spline files under 1 TeV that we can use for validation studies in the meantime. These can be acquired from the [Fermilab SciSoft Server](https://scisoft.fnal.gov/scisoft/packages/genie_xsec/). Described here is the process for downloading the preliminary splines for validation. The reasoning for this tune and these splines is that they were simply the most recent set of splines I could find that included the elements we need. I adjusted my tune to work with them.
 
-1. From the [SciSoft](https://scisoft.fnal.gov/scisoft/packages/genie_xsec/) page for GENIE splines, navigate to the [v3_06_00]([https://scisoft.fnal.gov/scisoft/packages/genie_xsec/v3_06_02_sbn2](https://scisoft.fnal.gov/scisoft/packages/genie_xsec/v3_06_00)) directory.
+1. From the [SciSoft](https://scisoft.fnal.gov/scisoft/packages/genie_xsec/) page for GENIE splines, navigate to the [v3_06_00](https://scisoft.fnal.gov/scisoft/packages/genie_xsec/v3_06_00) directory.
 2. Download the `genie_xsec-3.06.00-noarch-G1802a00000-k250-e1000.tar.bz2` tarball
 3. Navigate to your spline directory in your workspace `cd $SPACE/splines`
 4. Move the tarball to `splines`
