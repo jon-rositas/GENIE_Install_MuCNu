@@ -70,6 +70,7 @@ export PYTHIA8_LIB=$PYTHIA8_DIR/lib
 
 export LHAPDF6_INC=$LHAPDF6_DIR/include
 export LHAPDF6_LIB=$LHAPDF6_DIR/lib
+export LHAPDF_DATA_PATH=$LHAPDF6_DIR/share/LHAPD
 # Update system paths
 export PATH=$GENIE_BIN:$LHAPDF6_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$GENIE_LIB:$PYTHIA8_LIB:$LHAPDF6_LIB:$LD_LIBRARY_PATH
@@ -187,8 +188,13 @@ nohup gevgen_fnal\  # nohup tells your terminal to run GENIE in the background a
   > {LOG_NAME}.log 2>&1 & # ends the nohup command and defines a place to write the output since it won't show up in your terminal. Stores stdout and stderr
 ```
 
+# HIGH ENERGY MODIFICATIONS
+GENIE needs the correct LHAPDF grid corresponding to the high-energy tunes (`GHE19_00x`). The medium energy tunes rely on models that are included naturally with GENIE releases. The high-energy tunes require a bit more work to make sure that LHAPDF has access to the correct grid files. These grid files are lookup tables for the parton distribution functions (PDFs), detailing the likelihoods of striking any specific quark or gluon inside of the nucleus. LHAPDF is the manager that handles not only these grid files but also doing the 2D interpolation between points since the probability of striking any parton is dependent on both the fraction of total nuclear momentum carried by the quark, $x$, and the energy scale (resolving power), $Q^2$, of the interaction. When an interaction occurs, GENIE passes $x$ and $Q^2$ to LHAPDF, which references its grid file, performs interpolation, and hands the result back to GENIE. The tune that GENIE is set to use tells GENIE both what models to use for its interactions and what grid files to use (e.x., "use this specific scattering model for DIS interactions, and pair it with this specific LHAPDF grid file").
+
+**THIS SECTION NEEDS TO BE FINISHED WITH PROPER INFORMATION FOR THE HIGH ENERGY SPLINES WHEN YOU RECEIVE THEM**
+
 # FLATTENING OUTPUT
-GENIE's output files don't play nicely with other scripts as they are saved to a specialized, proprietary output. To continue the investigation with these files, it is best to convert them to a flattened root file that can be more easily read by other platforms. This is accomplished with the script below where you should take care to use the run number that you specified in the previous step. This will give you the chance to name the output unqiuely as well.
+GENIE's output files don't play nicely with other scripts as they are saved to a specialized, proprietary output. To continue the investigation with these files, it is best to convert them to a flattened root file that can be more easily read by other platforms. This is accomplished with the script below where you should take care to use the run number that you specified in the previous step. This will give you the chance to name the output uniquely as well.
 ```
 gntpc -i gntp.{RUN_NUMBER}.ghep.root -f gst -o {OUTPUT_NAME}.root
 ```
