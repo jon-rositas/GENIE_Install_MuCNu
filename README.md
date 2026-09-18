@@ -32,7 +32,7 @@ echo $GENIE
 ## No $LHAPDF_INC
 Recall that we are using Pythia8 here. First install it.
 ```
-wget https://www.pythia.org/download/pythia83/pythia8311.tgz
+wget https://pythia8.web.cern.ch/releases/pythia83/pythia8311.tgz
 tar -xf pythia8311.tgz
 cd pythia8311
 ./configure --prefix=$(pwd)
